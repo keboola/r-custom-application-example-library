@@ -25,11 +25,11 @@ for (i in 1:nrow(tables)) {
     
     # read output mapping
     outName <- app$getExpectedOutputTables()[i, 'full_path']
-    cat(outName)
-    
+    outDestination <- app$getExpectedOutputTables()[i, 'destination']
+
     # write output data
     write.csv(data, file = outName, row.names = FALSE)
     
     # write table metadata
-    app$writeTableManifest(outName, primaryKey = c('batman_primary_key'))
+    app$writeTableManifest(outName, destination = outDestination, primaryKey = c('batman_primary_key'))
 }
